@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서사</title>
+    <title>갤러리</title>
     <style>
         body {
           background-color: #f2f2f2;
@@ -15,23 +15,20 @@
             box-sizing: border-box;
             
         }
-        
-        /* 헤더는 전체 화면 너비를 사용 */
         header {
-            width: 100%; /* 전체 화면 너비 */
-            background-color: #333333; /* 헤더 배경색 */
+            width: 100%; 
+            background-color: #333333; 
             height: 70px;
             display: flex;
             align-items: center;
-            position: fixed; /* 헤더를 화면에 고정 */
-        top: 0; /* 화면 최상단에 위치 */
-        left: 0; /* 화면 왼쪽에 위치 */
-        z-index: 1000; /* 다른 요소들보다 위에 표시 */
+            position: fixed; 
+        top: 0; 
+        left: 0;
+        z-index: 1000; 
         }
         
-        /* 헤더 내부 콘텐츠를 담는 컨테이너 */
         .header-inner {
-            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            width: calc(100% - 300px); 
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -40,10 +37,10 @@
         }
 
         body {
-        padding-top: 70px; /* 헤더 높이만큼 패딩 추가 */
+        padding-top: 70px; 
         }
         
-        /* 로고에 그라데이션 적용 */
+        
         .logo h1 {
             font-size: 1.3rem;
             font-weight: 900;
@@ -64,13 +61,13 @@
         
         nav ul li a {
             text-decoration: none;
-            color: #ffffff; /* 어두운 배경에 맞게 밝은 색상 적용 */
+            color: #ffffff; 
             font-weight: 500;
             position: relative;
             transition: color 0.3s ease;
         }
         
-        /* 언더라인 애니메이션 효과 - 색상 변경 */
+       
         nav ul li a::after {
             content: '';
             position: absolute;
@@ -78,7 +75,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: #FF8C00; /* 언더라인 색상 변경 */
+            background-color: #FF8C00; 
             transition: width 0.3s ease;
         }
         
@@ -339,4 +336,5 @@
         </div>
     </footer>
 </body>
+
 </html>     
