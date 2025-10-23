@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장르</title>
+    <style>
+        body {
+          background-color: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        
+        /* 헤더는 전체 화면 너비를 사용 */
+        header {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #333333; /* 헤더 배경색 */
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed; /* 헤더를 화면에 고정 */
+        top: 0; /* 화면 최상단에 위치 */
+        left: 0; /* 화면 왼쪽에 위치 */
+        z-index: 1000; /* 다른 요소들보다 위에 표시 */
+        }
+        
+        /* 헤더 내부 콘텐츠를 담는 컨테이너 */
+        .header-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        body {
+        padding-top: 70px; /* 헤더 높이만큼 패딩 추가 */
+        }
+        
+        /* 로고에 그라데이션 적용 */
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff; /* 어두운 배경에 맞게 밝은 색상 적용 */
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        /* 언더라인 애니메이션 효과 - 색상 변경 */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FF8C00; /* 언더라인 색상 변경 */
+            transition: width 0.3s ease;
+        }
+        
+        /* 호버 시 색상 변경 - #FF8C00으로 변경 */
+        nav ul li a:hover {
+            color: #FF8C00; /* 호버 시 텍스트 색상 변경 */
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%; /* 호버 시 언더라인이 오른쪽으로 늘어남 */
+        }
+        
+         /* 150px 좌우 여백 및 최대폭 1200px 설정 */
+  .container {
+    max-width: 1200px; 
+    margin: 80px auto 40px; /* 상단 여백 80px (헤더 여유), 하단 40px */
+    padding: 0 150px; /* 좌우 여백 150px */
+    box-sizing: border-box;
+    padding-bottom: 299px;
+  }
+  
+  /* 타이틀은 그리드 전체 8칸 차지 => 가로폭 최대한 넓게 */
+  .title {
+    padding: 10px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  /* 콘텐츠 래퍼에 수직 정렬 추가 */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start; /* 상단 정렬 유지 */
+  margin-bottom: 100px; /* 각 섹션 간격 */
+}
+
+  /* 이미지는 고정 크기 유지 */
+.genre-image {
+  flex: 0 0 calc((100% / 8) * 4 - 20px);
+  height: 300px;
+  object-fit: cover;
+}
+
+  /* 텍스트 영역: 이미지와 같은 높이로 시작하지만 내용에 따라 확장 가능 */
+.text-wrapper {
+  flex: 0 0 calc((100% / 8) * 4 - 20px); /* 너비는 그대로 유지 */
+  min-height: 300px; /* 최소 높이만 이미지와 맞춤 */
+  height: auto; /* 내용에 맞게 자동 확장 */
+  overflow: visible; /* 내용이 넘쳐도 표시 */
+  box-sizing: border-box;
+}
+  .genre-name {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin-bottom: -20px;
+  }
+
+/* 설명 텍스트 - 가려짐 없이 자연스럽게 표시 */
+.genre-description {
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  /* 줄임표 관련 속성 모두 제거 */
+}
+        
+        .main-content {
+            grid-column: span 8;
+            background-color: #cceeff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 푸터 스타일 - 색상 변경 */
+        footer {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #222222; /* 푸터 색상 변경 */
+            padding: 20px 0; /* 상하 패딩으로 푸터 높이 조절 */
+            text-align: center;
+            margin-top: 40px; /* 메인 콘텐츠와의 간격 */
+        }
+
+        .footer-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto; /* 중앙 정렬 */
+            color: #ffffff; /* 어두운 배경에 맞게 텍스트 색상 변경 */
+            font-size: 14px;
+        }
+
+        /* 페이지 타이틀 */
+        .page-title {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            text-align: center;
+        }
+        
+        .page-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            position: relative;
+                        padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+        }
+        
+        .page-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        </style>
+</head>
+<body>
+     <!-- 페이지 타이틀 영역 -->
+    <div class="page-title">
+        <h2>장르</h2>
+        <p>앨범이 속한 장르</p>
+    </div>
+
+    <!-- 헤더는 그리드 바깥에 배치하여 전체 너비 사용 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>ALBUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">갤러리 </a></li>
+                    <li><a href="story.html">서사</a></li>
+                    <li><a href="artist.html">아티스트</a></li>
+                    <li><a href="theme.html">테마</a></li>
+                    <li><a href="genre.html">장르</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+ 
+
+    </div>
+    
+<!-- 가운데 내용 컨테이너 : 150px 좌우 여백, 8단 그리드 -->
+<div class="container">
+  <!-- 타이틀 (전체 8칸 차지) -->
+  <h2 class="title">장르</h2>
+  
+  <!-- 첫 번째 장르 섹션 -->
+  <div class="content-wrapper">
+    <img src="HIP HOP.jpg" alt="힙합 장르 이미지" class="genre-image" />
+    <div class="text-wrapper">
+      <h3 class="genre-name">힙합 (Hip-Hop)</h3>
+      <p class="genre-description">힙합은 1970년대 뉴욕 브롱스 지역 아프리카계 미국인 및 라틴계 커뮤니티에서 시작된 문화 운동에서 비롯되었습니다. 랩, 디제잉, 그래피티, 브레이크 댄스라는 네 가지 주요 요소로 구성되며, 특히 랩은 리드미컬한 플로우와 시적인 가사를 통해 사회 비판, 자아 성찰, 일상 경험 등 다양한 메시지를 전달합니다. 시간이 지나면서 트랩, 드릴, 붐뱁 등 다양한 하위 장르로 분화하며 끊임없이 진화해 왔습니다. 강렬한 비트와 솔직한 표현력으로 젊은 세대에 큰 영향을 끼치며, 음악뿐 아니라 패션, 언어 등 라이프스타일 전반에도 깊은 영향을 주고 있습니다.</p>
+    </div>
+  </div>
+  
+  <!-- 두 번째 장르 섹션 -->
+  <div class="content-wrapper">
+    <img src="R&B.png" alt="R&B 장르 이미지" class="genre-image" />
+    <div class="text-wrapper">
+      <h3 class="genre-name">R&B (Rhythm & Blues)</h3>
+      <p class="genre-description">R&B는 아프리카계 미국인 음악 전통에서 발달한 장르로, 소울, 가스펠, 재즈, 블루스의 영향을 받았습니다. 이름처럼 감각적 리듬과 서정적 멜로디, 그리고 감정을 깊이 전달하는 보컬이 특징이며, 사랑, 이별, 그리움 같이 인간적인 감정을 섬세하게 다룹니다. 현대 R&B는 일렉트로닉 사운드와 힙합 비트, 팝적 요소를 포용해 다양한 형태로 진화하고 있습니다. Frank Ocean, The Weeknd 같은 아티스트들이 전통 R&B의 틀을 깨고 새로운 사운드와 서사를 실험하면서 장르의 지평을 넓히고 있습니다.</p>
+    </div>
+  </div>
+  
+  <!-- 세 번째 장르 섹션 -->
+  <div class="content-wrapper">
+    <img src="JAZZ.jpg" alt="재즈 장르 이미지" class="genre-image" />
+    <div class="text-wrapper">
+      <h3 class="genre-name">재즈 (Jazz)</h3>
+      <p class="genre-description">재즈는 20세기 초 미국 뉴올리언스에서 탄생한 음악으로, 아프리카계 미국인의 음악적 전통과 유럽 음악이 융합해 만들어졌습니다. 즉흥 연주와 스윙 리듬, 당김음(싱코페이션)이 특징이며, 자유로운 표현과 끊임없는 실험으로 발전해 왔습니다. 시기에 따라 Dixieland, Swing, Bebop, Cool Jazz, Hard Bop, Fusion 등 다양한 스타일로 분화했으며, Miles Davis 같은 거장들은 각 스타일을 재정의하고 새로운 길을 제시했습니다.</p>
+    </div>
+  </div>
+</div>
+
+
+    <!-- 푸터 영역 -->
+    <footer>
+        <div class="footer-inner">
+            &copy; 2024 ALBUM. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>앨범 테마: Channel Orange</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        /* --- 기존 헤더 스타일 (재사용) --- */
+        header {
+            width: 100%;
+            background-color: #333333;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        nav ul { list-style: none; display: flex; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover { color: #FF8C00; }
+        /* --- /기존 헤더 스타일 --- */
+
+        /* --- 메인 콘텐츠 영역 --- */
+        .theme-detail-main {
+            min-height: calc(100vh - 70px - 80px); /* 100vh - 헤더 높이 - 푸터 높이 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 수직 가운데 정렬을 위한 설정 */
+            align-items: center; /* 수평 가운데 정렬을 위한 설정 */
+            position: relative;
+            overflow: hidden; /* 배경 이미지가 벗어나지 않도록 */
+            color: #ffffff; /* 텍스트 기본 색상 */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* 흐릿한 배경 위 텍스트 가독성 향상 */
+            padding-top: 70px; /* 헤더 아래 여백 */
+            padding-bottom: 40px; /* 푸터 위 여백 */
+        }
+
+        .theme-detail-main::before { /* 배경 이미지와 흐릿한 효과 */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('lil tecca plan a.jpg'); /* 실제 이미지 경로로 변경 */
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.6); /* 흐릿한 효과 + 어둡게 하여 텍스트 가독성 UP */
+            z-index: -1; /* 내용을 배경 뒤로 보내기 */
+        }
+        
+        .theme-content-area {
+            position: relative;
+            z-index: 1; /* 배경 위에 내용이 오도록 */
+            text-align: center; /* 텍스트 정렬 */
+            width: calc(100% - 300px); /* 좌우 150px 여백 유지 */
+            max-width: 1200px;
+        }
+
+        .theme-detail-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-top: -300px; /* 헤더에서 제목까지 조금만 여백 */
+            margin-bottom: 100px;
+            line-height: 1.2;
+            color: #fff; /* 밝은 색상 */
+        }
+
+        .theme-detail-artist {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 50px; /* 제목에서 아티스트까지 조금 더 넓은 여백 */
+            color: #eee; /* 제목보다 살짝 어둡게 */
+        }
+        
+        .theme-name-centered {
+        font-size: 6rem;
+        font-weight: 900;
+        letter-spacing: -2px;
+        color: #ffac4c; /* 테마 포인트 색상 */
+        position: absolute; /* 절대 위치로 중앙 정렬을 위한 준비 */
+        top: 50%; /* 컨테이너의 50% 지점 */
+        left: 50%; /* 컨테이너의 50% 지점 */
+        transform: translate(-50%, -50%); /* 정확히 중앙 정렬 */
+        width: 90%; /* 너무 넓어지지 않게 너비 제한 */
+        max-width: 1000px;
+        line-height: 1;
+        white-space: nowrap; /* ★ 줄바꿈 방지 - 텍스트가 한 줄로 표시되도록 */
+        text-align: center; /* ★ 이 요소를 추가하여 텍스트 내용까지 가운데 정렬 */
+}
+
+        /* --- 기존 푸터 스타일 (재사용) --- */
+        footer {
+            width: 100%;
+            background-color: #222222;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            z-index: 100; /* 다른 콘텐츠 위에 표시 */
+        }
+        .footer-inner {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 0 auto;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        /* --- /기존 푸터 스타일 --- */
+
+    </style>
+</head>
+<body>
+    <!-- 헤더 (다른 페이지와 동일) -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>ALBUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">갤러리</a></li>
+                    <li><a href="story.html">서사</a></li>
+                    <li><a href="artist.html">아티스트</a></li>
+                    <li><a href="theme.html">테마</a></li>
+                    <li><a href="genre.html">장르</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 테마 콘텐츠 -->
+    <main class="theme-detail-main">
+        <div class="theme-content-area">
+            <h1 class="theme-detail-title">PLAN A</h1>
+            <p class="theme-detail-artist">Lil Tecca</p>
+        </div>
+        <!-- 테마 이름은 절대 위치로 별도로 관리하여 정확한 가운데 정렬 -->
+        <h2 class="theme-name-centered">New Wave Trendsetter</h2>
+    </main>
+
+    <!-- 푸터 (다른 페이지와 동일) -->
+    <footer>
+        <div class="footer-inner">
+            &copy; 2024 ALBUM. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아티스트</title>
+    <style>
+        body {
+          background-color: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 헤더는 전체 화면 너비를 사용 */
+        header {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #333333; /* 헤더 배경색 */
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed; /* 헤더를 화면에 고정 */
+        top: 0; /* 화면 최상단에 위치 */
+        left: 0; /* 화면 왼쪽에 위치 */
+        z-index: 1000; /* 다른 요소들보다 위에 표시 */  
+        }
+
+        /* 헤더 내부 콘텐츠를 담는 컨테이너 */
+        .header-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body {
+        padding-top: 70px; /* 헤더 높이만큼 패딩 추가 */
+        }
+        
+        /* 로고에 그라데이션 적용 */
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff; /* 어두운 배경에 맞게 밝은 색상 적용 */
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        /* 언더라인 애니메이션 효과 - 색상 변경 */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FF8C00; /* 언더라인 색상 변경 */
+            transition: width 0.3s ease;
+        }
+        
+        /* 호버 시 색상 변경 - #FF8C00으로 변경 */
+        nav ul li a:hover {
+            color: #FF8C00; /* 호버 시 텍스트 색상 변경 */
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%; /* 호버 시 언더라인이 오른쪽으로 늘어남 */
+        }
+        
+        /* 메인 콘텐츠 영역 */
+        .container {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 8단 그리드 */
+            gap: 20px;
+        }
+        
+        .main-content {
+            grid-column: span 8;
+            background-color: #cceeff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 푸터 스타일 - 색상 변경 */
+        footer {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #222222; /* 푸터 색상 변경 */
+            padding: 20px 0; /* 상하 패딩으로 푸터 높이 조절 */
+            text-align: center;
+            margin-top: 40px; /* 메인 콘텐츠와의 간격 */
+        }
+
+        .footer-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto; /* 중앙 정렬 */
+            color: #ffffff; /* 어두운 배경에 맞게 텍스트 색상 변경 */
+            font-size: 14px;
+        }
+
+         h1 {
+        text-align: center;
+    }
+
+    h3 {
+      text-align: center;
+      opacity: 80%;
+    }
+
+    .image-box {
+      width: 300px;
+      height: 300px;
+      background-color: #ccc;
+      margin: 0 auto 20px;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 이미지 찌그러짐 방지 */
+      display: block;
+    }
+
+    img {
+      margin-top: 80px;    /* 위쪽 여백 20픽셀 */
+      margin-bottom: 20px; /* 아래쪽 여백 20픽셀 */
+    }
+
+    p {
+    padding: 60px 40px; /* 상하 20px, 좌우 40px 여백 */
+    /* 또는 */
+    margin:   0 40px; /* 상하 0, 좌우 40px 여백 */
+    /* 또는 */
+    width: 80%; /* 너비를 80%로 제한하여 자동으로 좌우 여백 생성 */
+    margin: 0 auto; /* 중앙 정렬 */
+    max-width: 800px; /* 최대 너비 제한 (선택사항) */
+    color:black; opacity: 80%;
+    }
+
+    /* 페이지 타이틀 */
+        .page-title {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            text-align: center;
+        }
+        
+        .page-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            position: relative;
+                        padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+        }
+        
+        .page-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-top: -60px;
+        }
+
+         </style>
+</head>
+ <!-- 페이지 타이틀 영역 -->
+    <div class="page-title">
+        <h2>아티스트</h2>
+        <p>앨범을 만든 아티스트</p>
+    </div>
+
+<body>
+    <!-- 헤더는 그리드 바깥에 배치하여 전체 너비 사용 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>ALBUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">갤러리 </a></li>
+                    <li><a href="story.html">서사</a></li>
+                    <li><a href="artist.html">아티스트</a></li>
+                    <li><a href="theme.html">테마</a></li>
+                    <li><a href="genre.html">장르</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="image-box">
+      <img src="frank-ocean.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Frank Ocean (프랭크 오션)</h1>
+
+<p>Frank Ocean은 현대 음악계에서 독보적인 아티스트로, R&B의 틀을 깨고 깊이 있는 서사와 실험적 사운드를 결합했습니다. 그는 소울, 힙합, 팝 등 다양한 장르를 유기적으로 엮어 자신만의 고유한 음악 세계를 구축했습니다. 2012년 Channel Orange는 사랑, 상실, 정체성 등 개인적 이야기를 시적으로 풀어내며 찬사를 받았습니다. 2016년 Blonde는 더욱 실험적이고 내성적인 면모로 음악적 자유와 주체성을 보여주었습니다.
+
+그의 음악은 매끄러운 보컬과 복잡한 내러티브, 예상치 못한 편곡으로 감상자를 끌어들입니다. 가사는 시집을 읽는 듯한 감동을 주며, 숨겨진 의미와 상징들로 가득합니다. Frank Ocean은 미디어 노출을 자제하고 오직 창작물로만 대중과 소통하는 방식을 고수합니다. 이는 그의 예술적 가치를 부각시키며, 그를 단순한 팝 스타를 넘어 진정한 아티스트로 만듭니다. 그는 시대를 초월하는 예술성으로 현대 음악사에 깊은 흔적을 남긴 문화적 아이콘입니다. 그의 영향력은 장르를 넘어 많은 아티스트들에게 영감이 되고 있습니다. 어떠한 트렌드에도 구애받지 않고 오로지 자신만의 예술적 길을 걷는 아티스트로 평가받습니다.</p>
+
+<div class="image-box">
+      <img src="kanye west.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Kanye West (칸예 웨스트)</h1>
+
+<p>Kanye West는 현대 음악과 대중문화의 가장 혁신적이면서도 논쟁적인 인물 중 한 명입니다. 그는 처음 Roc-A-Fella Records의 뛰어난 프로듀서로 명성을 쌓았으나, 직접 마이크를 잡고 자신의 이야기를 전하려는 강렬한 열망으로 데뷔 앨범 The College Dropout을 발표하며 힙합 씬의 판도를 뒤집었습니다. 그의 음악은 사회 비판적인 메시지, 솔직한 자아성찰, 그리고 유머가 가득한 가사를 특징으로 하며, 소울풀한 샘플링과 오케스트라 편곡이 결합된 독자적인 사운드를 창조했습니다. Late Registration, My Beautiful Dark Twisted Fantasy 같은 앨범들은 그의 음악적 스펙트럼과 대담한 실험정신을 증명하며 힙합의 예술적 지평을 넓혔습니다.
+
+Kanye는 음악 외에도 패션, 디자인 등 다양한 분야에서 자신의 예술적 비전을 끊임없이 확장하며 트렌드를 선도했습니다. 그의 혁신적인 시도와 파격적인 행보는 늘 논란의 중심에 서기도 했지만, 이를 통해 팝 문화 전반에 걸쳐 지대한 영향을 미치는 아이콘으로 자리매김했습니다. 그는 시대를 앞서가는 예술적 감각과 확고한 신념으로 힙합을 넘어선 문화 현상을 만들어냈으며, 자신의 영향력을 통해 끊임없이 음악과 예술의 경계를 재정의하고 있습니다. 그의 행보는 항상 예측 불가능하지만, 그만큼 강력한 예술적 발자취를 남기고 있습니다. </p>
+
+<div class="image-box">
+      <img src="playboi carti.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Playboi Carti (플레이보이 카티)</h1>
+
+<p>Playboi Carti는 2010년대 중반 사운드클라우드 랩 씬에서 등장하여, 기존 힙합의 문법을 해체하고 자신만의 독특한 스타일로 새로운 장르를 개척한 아티스트입니다. 그는 '멈블 랩(mumble rap)'의 대표주자 중 한 명으로, 의미 전달보다는 리듬과 사운드 그 자체에 집중하는 접근 방식을 선보였습니다. 그의 시그니처인 독특한 '아기 보컬(baby voice)'과 현란한 애드립은 트랙에 즉흥적이고 중독적인 에너지를 불어넣으며 수많은 팬덤을 형성했습니다. 2020년 발표한 Whole Lotta Red 앨범은 이러한 그의 실험적인 성향을 극대화한 결과물입니다.
+
+이 앨범은 '뱀파이어 콘셉트'와 '레이지 비트(Rage Beat)'라는 파격적인 사운드를 전면에 내세워 힙합 씬에 신선한 충격을 주었습니다. 초기에는 극심한 호불호가 갈렸으나, 시간이 지남에 따라 장르의 경계를 허무는 선구적인 작품으로 재평가받으며 트랩 음악의 미래를 제시했다는 찬사를 받았습니다. Playboi Carti는 음악뿐만 아니라 독특한 패션과 시각적 미학으로 젊은 세대의 서브컬처에 막대한 영향을 미치고 있습니다. 그의 과감한 음악적 도전과 확고한 예술적 개성은 끊임없이 힙합 팬들에게 새로운 경험을 제공하며 장르의 아이콘으로 우뚝 섰습니다. </p>
+<div class="image-box">
+      <img src="dijon.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Dijon (디종)</h1>
+
+<p>Dijon은 현대 음악 씬에서 독특하고 실험적인 사운드로 주목받는 아티스트로, R&B, 소울, 인디 팝, 그리고 일렉트로닉 요소를 자유롭게 넘나들며 자신만의 음악적 영역을 구축하고 있습니다. 그의 음악은 가공되지 않은 듯한 날것의 감정과 진솔한 서사를 통해 듣는 이에게 깊은 공감과 몰입을 선사합니다. 특히 그의 라이브 퍼포먼스는 즉흥성과 관객과의 교감을 중시하며, 마치 가까운 친구와 대화하는 듯한 친밀하고 아날로그적인 매력을 발산합니다. 이처럼 Dijon은 단순히 음악을 재생하는 것을 넘어, 공연장에서 관객과 함께 살아 숨 쉬는 경험을 창조합니다.
+
+그의 앨범 Baby와 같은 작품들은 사랑, 관계, 상실 등 보편적인 주제들을 디종 특유의 섬세한 보컬과 실험적인 편곡으로 풀어내며 평단과 팬들로부터 높은 평가를 받았습니다. 예측할 수 없는 사운드 변화와 내레이션이 가미된 그의 곡들은 리스너에게 새로운 청각적 경험을 제공합니다. 그는 디지털 시대에 아날로그 감성을 성공적으로 접목하며, 장르의 경계를 허무는 동시에 현대 음악에 신선한 영감을 불어넣는 아티스트로 자리매김하고 있습니다. 자신만의 확고한 음악 철학으로 독창적인 예술 세계를 구축해나가고 있습니다.
+</p>
+
+<div class="image-box">
+      <img src="Miles Davis.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Miles Davis (마일스 데이비스)</h1>
+
+<p>Miles Davis는 재즈 역사상 가장 위대하고 혁신적인 음악가 중 한 명으로, 반세기 동안 재즈의 모든 주요 스타일을 선도하며 끊임없이 변화를 추구했습니다. 그는 비밥(Bebop) 시대를 넘어 쿨 재즈(Cool Jazz)의 서늘하고 세련된 사운드를 개척했고, 그의 1959년 앨범 Kind of Blue는 모달 재즈(Modal Jazz)라는 새로운 즉흥 연주 방식을 확립하며 재즈의 패러다임을 완전히 바꾸어 놓았습니다. 이 앨범은 오늘날까지도 가장 많이 팔린 재즈 앨범이자 재즈 역사상 가장 영향력 있는 작품으로 평가받습니다.
+
+그의 음악적 여정은 여기서 멈추지 않고, 록 음악의 요소를 도입한 재즈 퓨전(Jazz Fusion) 장르를 창시하며 Bitches Brew와 같은 혁명적인 앨범들을 통해 또 한 번 음악계를 뒤흔들었습니다. Miles Davis는 끊임없이 새로운 사운드와 아이디어를 탐구하며 자신을 재창조했고, 주변의 뛰어난 뮤지션들을 발굴하고 그들과의 협업을 통해 수많은 걸작을 탄생시켰습니다. 그는 트럼펫 연주자로서의 독창적인 스타일뿐만 아니라 밴드 리더이자 작곡가로서 재즈의 현재와 미래를 이끈, 진정한 '음악의 건축가'이자 시대를 초월한 예술가로 기억되고 있습니다.
+</p>
+
+<div class="image-box">
+      <img src="lil tecca.jpg" alt="서사 이미지 설명" />
+    </div>
+
+<h1>Lil Tecca (릴 테카)</h1>
+
+<p>Lil Tecca는 2010년대 후반 사운드클라우드를 통해 급부상한 젊은 래퍼이자 가수로서, 캐치한 멜로디와 중독성 있는 플로우를 결합한 '멜로딕 트랩' 사운드를 선보이며 젊은 세대의 아이콘으로 떠올랐습니다. 그는 경쾌하고 때로는 나른한 분위기의 비트 위에 자신의 일상, 성공, 그리고 꿈에 대한 이야기를 솔직하고 유쾌하게 풀어내며 동세대 청소년들과 깊은 공감대를 형성했습니다. 특히 2019년 발표한 히트곡 'Ransom'은 전 세계적인 인기를 얻으며 그의 이름을 널리 알리는 계기가 되었습니다.
+
+Tecca의 음악은 복잡한 서사보다는 직관적인 감각과 리듬을 중시하며, 듣기 편안하면서도 중독성 강한 훅(hook)이 특징입니다. 그는 빠르게 변화하는 힙합 트렌드 속에서도 자신만의 스타일을 유지하며 꾸준히 성장하는 모습을 보여주고 있습니다. PLAN A와 같은 앨범들은 아티스트로서의 깊은 고민과 음악적 스펙트럼의 확장을 담아냈습니다. 단순한 트렌드를 넘어 자신만의 길을 걸으며, 새로운 세대의 힙합을 이끌어갈 중요한 아티스트로 기대를 모으고 있습니다. 그의 솔직하고 경쾌한 에너지는 많은 젊은 아티스트들에게 영감이 되고 있습니다.
+</p>
+    
+<!-- 푸터 영역 -->
+    <footer>
+        <div class="footer-inner">
+            &copy; 2024 ALBUM. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

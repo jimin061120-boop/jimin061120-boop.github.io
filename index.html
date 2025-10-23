@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서사</title>
+    <style>
+        body {
+          background-color: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        
+        /* 헤더는 전체 화면 너비를 사용 */
+        header {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #333333; /* 헤더 배경색 */
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed; /* 헤더를 화면에 고정 */
+        top: 0; /* 화면 최상단에 위치 */
+        left: 0; /* 화면 왼쪽에 위치 */
+        z-index: 1000; /* 다른 요소들보다 위에 표시 */
+        }
+        
+        /* 헤더 내부 콘텐츠를 담는 컨테이너 */
+        .header-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body {
+        padding-top: 70px; /* 헤더 높이만큼 패딩 추가 */
+        }
+        
+        /* 로고에 그라데이션 적용 */
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff; /* 어두운 배경에 맞게 밝은 색상 적용 */
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        /* 언더라인 애니메이션 효과 - 색상 변경 */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FF8C00; /* 언더라인 색상 변경 */
+            transition: width 0.3s ease;
+        }
+        
+        /* 호버 시 색상 변경 - #FF8C00으로 변경 */
+        nav ul li a:hover {
+            color: #FF8C00; /* 호버 시 텍스트 색상 변경 */
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%; /* 호버 시 언더라인이 오른쪽으로 늘어남 */
+        }
+        
+        /* 메인 콘텐츠 영역 */
+        .container {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 8단 그리드 */
+            gap: 20px;
+        }
+        
+        .main-content {
+            grid-column: span 8;
+            background-color: #cceeff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 푸터 스타일 - 색상 변경 */
+        footer {
+            width: 100%; /* 전체 화면 너비 */
+            background-color: #222222; /* 푸터 색상 변경 */
+            padding: 20px 0; /* 상하 패딩으로 푸터 높이 조절 */
+            text-align: center;
+            margin-top: 40px; /* 메인 콘텐츠와의 간격 */
+        }
+
+        .footer-inner {
+            width: calc(100% - 300px); /* 좌우 150px 여백 */
+            max-width: 1200px;
+            margin: 0 auto; /* 중앙 정렬 */
+            color: #ffffff; /* 어두운 배경에 맞게 텍스트 색상 변경 */
+            font-size: 14px;
+        }
+        
+        /* 서사 카드 컨테이너 - 버튼 없는 버전 */
+        .gallery-cards {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .gallery-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-card {
+    text-decoration: none; /* 카드 내부 텍스트의 기본 언더라인 제거 */
+}
+        
+        .card-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card-text {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* 페이지 타이틀 */
+        .page-title {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            text-align: center;
+        }
+        
+        .page-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            position: relative;
+                        padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+        }
+        
+        .page-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 갤러리 카드의 링크 스타일 제거 */
+        a.gallery {
+            text-decoration: none; /* 언더라인 제거 */
+            color: inherit; /* 기본 텍스트 색상 유지 */
+        }
+
+        /* 모든 링크 스타일 제거 (더 강력한 방법) */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 헤더는 그리드 바깥에 배치하여 전체 너비 사용 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>ALBUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">갤러리 </a></li>
+                    <li><a href="story.html">서사</a></li>
+                    <li><a href="artist.html">아티스트</a></li>
+                    <li><a href="theme.html">테마</a></li>
+                    <li><a href="genre.html">장르</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 페이지 타이틀 영역 -->
+    <div class="page-title">
+        <h2>갤러리</h2>
+        <p>다양한 앨범 갤러리</p>
+    </div>
+    
+    <!-- 서사 카드 컨테이너 - 버튼 없는 버전 -->
+    <div class="gallery-cards"> 
+        <!-- 카드 1: Frank Ocean - Channel Orange -->
+        <a href="gallery 1.html" class="gallery-card">
+            <div class="card-image">
+                <img src="frank ocean channel orange.jpg" alt="Frank Ocean - Channel Orange">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Channel Orange</h3>
+                <p class="card-text">Frank Ocean의 데뷔 앨범으로, 사랑, 상실, 정체성에 관한 깊이 있는 서사를 담고 있습니다.</p>
+            </div>
+        </a>
+        
+        <!-- 카드 2: Kanye West - Late Registration -->
+        <a href="gallery 2.html" class="gallery-card">
+            <div class="card-image">
+                <img src="kanye west late registration.jpg" alt="Kanye West - Late Registration">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Late Registration</h3>
+                <p class="card-text">Kanye West의 두 번째 앨범으로, 성공과 사회적 불평등에 대한 복합적인 내러티브를 구축합니다.</p>
+            </div>
+        </a>
+        
+        <!-- 카드 3: Playboi Carti - Whole Lotta Red -->
+        <a href="gallery 3.html" class="gallery-card">
+            <div class="card-image">
+                <img src="whole lotta red.png" alt="Playboi Carti - Whole Lotta Red">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Whole Lotta Red</h3>
+                <p class="card-text">Playboi Carti의 혁신적인 앨범으로, 반항적인 정신과 실험적인 사운드를 담고 있습니다.</p>
+            </div>
+        </a>
+        
+        <!-- 카드 4: Dijon - Baby -->
+        <a href="gallery 4.html" class="gallery-card">
+            <div class="card-image">
+                <img src="dijon baby.jpg" alt="Dijon - Baby">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Baby</h3>
+                <p class="card-text">Dijon의 실험적인 앨범으로, 사랑과 관계에 대한 날것의 감정을 담아냅니다.</p>
+            </div>
+        </a>
+        
+        <!-- 카드 5: Lil Tecca - PLAN A -->
+        <a href="gallery 5.html" class="gallery-card">
+            <div class="card-image">
+                <img src="lil tecca plan a.jpg" alt="Lil Tecca - PLAN A">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">PLAN A</h3>
+                <p class="card-text">Lil Tecca의 네 번째 앨범으로, 그의 음악적 여정과 확고한 의지를 담고 있습니다.</p>
+            </div>
+        </a>
+        
+        <!-- 카드 6: Miles Davis - Kind of Blue -->
+        <a href="gallery 6.html" class="gallery-card">
+            <div class="card-image">
+                <img src="Miles Davis king of blue.jpg" alt="Miles Davis - Kind of Blue">
+            </div>
+            <div class="card-content">
+                 <h3 class="card-title">Kind of Blue</h3>
+                <p class="card-text">Miles Davis의 걸작으로, 재즈 역사를 바꾼 혁신적인 모달 재즈의 서사를 담고 있습니다.</p>
+            </div>
+        </a>
+    </div>
+    
+    <!-- 푸터 영역 -->
+    <footer>
+        <div class="footer-inner">
+            &copy; 2024 ALBUM. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>     

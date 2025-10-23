@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리 상세</title>
+    <style>
+        body {
+          background-color: #f2f2f2;
+          padding-top: 70px; /* 고정 헤더 고려 */
+          margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            width: 100%;
+            background-color: #333333;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FF6600, #FF9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #FF8C00;
+        }
+        
+        /* 이미지 갤러리 그리드 */
+        .gallery-container {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3열 그리드 */
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1/1; /* 정사각형 비율 유지 */
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+            display: block;
+        }
+        
+        /* 푸터 스타일 */
+        footer {
+            width: 100%;
+            background-color: #222222;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-inner {
+            width: calc(100% - 300px);
+            max-width: 1200px;
+            margin: 0 auto;
+            color: #ffffff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 영역 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>ALBUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">갤러리</a></li>
+                    <li><a href="story.html">서사</a></li>
+                    <li><a href="artist.html">아티스트</a></li>
+                    <li><a href="theme.html">테마</a></li>
+                    <li><a href="genre.html">장르</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 이미지 갤러리 그리드 -->
+    <div class="gallery-container">
+        <!-- 이미지 1 -->
+        <div class="gallery-item">
+            <img src="gallery 4.jpg" alt="갤러리 이미지 1">
+        </div>
+        
+        <!-- 이미지 2 -->
+        <div class="gallery-item">
+            <img src="gallery 4-2.jpg" alt="갤러리 이미지 2">
+        </div>
+        
+        <!-- 이미지 3 -->
+        <div class="gallery-item">
+            <img src="gallery 4-3.jpg" alt="갤러리 이미지 3">
+        </div>
+        
+        <!-- 이미지 4 -->
+        <div class="gallery-item">
+            <img src="gallery 4-4.jpg" alt="갤러리 이미지 4">
+        </div>
+        
+        <!-- 이미지 5 -->
+        <div class="gallery-item">
+            <img src="gallery 4-5.jpg" alt="갤러리 이미지 5">
+        </div>
+        
+        <!-- 이미지 6 -->
+        <div class="gallery-item">
+            <img src="gallery 4-6.jpg" alt="갤러리 이미지 6">
+        </div>
+    </div>
+    
+    <!-- 푸터 영역 -->
+    <footer>
+        <div class="footer-inner">
+            &copy; 2024 ALBUM. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
